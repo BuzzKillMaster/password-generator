@@ -68,7 +68,7 @@ export default function Home() {
                 <meta name="description"
                       content="Create secure passwords that are more difficult to guess or crack, with settings for length, character types and more."/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                {/*<link rel="icon" href="/favicon.ico" />*/}
+                <link rel="icon" href="/favicon.ico" />
             </Head>
             <main
                 className={"font-mono min-h-screen w-screen bg-stone-900 flex items-center justify-center p-6 text-gray-50"}>
@@ -84,7 +84,7 @@ export default function Home() {
                         <div>
                             <div className={"flex items-center justify-between"}>
                                 <p className={"font-semibold"}>Characters</p>
-                                <p className={"text-2xl text-green-400"}>{passwordLength}</p>
+                                <p className={"text-2xl font-bold text-green-400"}>{passwordLength}</p>
                             </div>
 
                             <input onChange={(event) => setPasswordLength(parseInt(event.target.value))} type="range"
