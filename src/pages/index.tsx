@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import {FaCheck, FaRegCopy} from "react-icons/fa";
+import {FaRegCopy} from "react-icons/fa";
+import CheckBox from "@/components/CheckBox";
 
 type CheckableValues = {
     uppercase: boolean
@@ -85,13 +86,13 @@ export default function Home() {
 
 
                     <CheckBox label={"Include uppercase letters"} checked={checkedValues.uppercase}
-                              clickHandler={toggleUppercase}/>
+                              handleClick={toggleUppercase}/>
                     <CheckBox label={"Include lowercase letters"} checked={checkedValues.lowercase}
-                              clickHandler={toggleLowercase}/>
+                              handleClick={toggleLowercase}/>
                     <CheckBox label={"Include numbers"} checked={checkedValues.numbers}
-                              clickHandler={toggleNumbers}/>
+                              handleClick={toggleNumbers}/>
                     <CheckBox label={"Include symbols"} checked={checkedValues.symbols}
-                              clickHandler={toggleSymbols}/>
+                              handleClick={toggleSymbols}/>
 
                     <div className={"bg-stone-900 p-6 flex justify-between uppercase text-lg font-semibold"}>
                         <p className={"opacity-75"}>Strength</p>
@@ -114,20 +115,4 @@ export default function Home() {
             </div>
         </main>
 );
-}
-
-function CheckBox(props: {
-    label: string
-    checked: boolean
-    clickHandler: () => void
-}) {
-    return (
-        <div onClick={props.clickHandler} className={"flex items-center cursor-pointer"}>
-            <div
-                className={"p-1 border-2 mr-4 hover:border-green-400" + (props.checked ? " border-green-400 bg-green-400" : "")}>
-                <FaCheck className={"text-xs text-stone-800"}/>
-            </div>
-            <p className={"font-semibold"}>{props.label}</p>
-        </div>
-    )
 }
