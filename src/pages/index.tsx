@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {FaRegCopy} from "react-icons/fa";
 import CheckBox from "@/components/CheckBox";
 import CheckableValues from "@/types/CheckableValues";
+import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 
 const passwordStrengthString = ["Unavailable", "Pathetic", "Weak", "Medium", "Strong", "Superior", "Incredible", "Godlike"]
 
@@ -89,16 +90,15 @@ export default function Home() {
                     <CheckBox label={"Include symbols"} checked={checkedValues.symbols}
                               handleClick={toggleSymbols}/>
 
-                    <div className={"bg-stone-900 p-6 flex justify-between uppercase text-lg font-semibold"}>
+                    <div className={"bg-stone-900 p-6 sm:flex justify-between uppercase text-lg font-semibold"}>
                         <p className={"opacity-75"}>Strength</p>
 
-                        <div className={"flex items-center gap-2"}>
+                        <div className={"flex items-center gap-2 min-h-12"}>
                             <p className={"mr-1"}>{passwordStrengthString[passwordStrength]}</p>
 
-                            {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
-                            {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
-                            {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
-                            {/*<div className={"w-2 border-2 opacity-75 h-full"}></div>*/}
+                            {passwordStrengthString.slice(0, -1).map((value, index) => (
+                                <PasswordStrengthIndicator key={value} active={passwordStrength >= index + 1}/>
+                            ))}
                         </div>
                     </div>
 
@@ -109,5 +109,5 @@ export default function Home() {
                 </div>
             </div>
         </main>
-);
+    );
 }
