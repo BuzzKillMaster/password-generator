@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, {useState} from "react";
 import {FaCheck, FaRegCopy} from "react-icons/fa";
 
@@ -62,67 +61,58 @@ export default function Home() {
     }
 
     return (
-        <>
-            <Head>
-                <title>Password Generator</title>
-                <meta name="description"
-                      content="Create secure passwords that are more difficult to guess or crack, with settings for length, character types and more."/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <main
-                className={"font-mono min-h-screen w-screen bg-stone-900 flex items-center justify-center p-6 text-gray-50"}>
-                <div className={"w-full max-w-lg text-center flex flex-col gap-6"}>
-                    <h1 className={"text-xl font-semibold"}>Password Generator</h1>
+        <main
+            className={"font-mono min-h-screen w-screen bg-stone-900 flex items-center justify-center p-6 text-gray-50"}>
+            <div className={"w-full max-w-lg text-center flex flex-col gap-6"}>
+                <h1 className={"text-xl font-semibold"}>Password Generator</h1>
 
-                    <div className={"flex items-center justify-between gap-6 bg-stone-800 shadow px-8 py-6 overflow-hidden"}>
-                        <p className={"text-xl font-semibold opacity-75 overflow-hidden whitespace-nowrap overflow-ellipsis"}>{password}</p>
-                        <FaRegCopy onClick={copyPassword} className={"text-xl cursor-pointer hover:text-green-400 z-20 relative shrink-0"}/>
+                <div className={"flex items-center justify-between gap-6 bg-stone-800 shadow px-8 py-6 overflow-hidden"}>
+                    <p className={"text-xl font-semibold opacity-75 overflow-hidden whitespace-nowrap overflow-ellipsis"}>{password}</p>
+                    <FaRegCopy onClick={copyPassword} className={"text-xl cursor-pointer hover:text-green-400 z-20 relative shrink-0"}/>
+                </div>
+
+                <div className={"bg-stone-800 shadow px-8 py-6 flex flex-col gap-8"}>
+                    <div>
+                        <div className={"flex items-center justify-between"}>
+                            <p className={"font-semibold"}>Characters</p>
+                            <p className={"text-2xl font-bold text-green-400"}>{passwordLength}</p>
+                        </div>
+
+                        <input onChange={(event) => setPasswordLength(parseInt(event.target.value))} type="range"
+                               min={1} max={36} value={passwordLength}
+                               className="mt-8 w-full h-2 rounded-lg appearance-none cursor-pointer bg-stone-900"/>
                     </div>
 
-                    <div className={"bg-stone-800 shadow px-8 py-6 flex flex-col gap-8"}>
-                        <div>
-                            <div className={"flex items-center justify-between"}>
-                                <p className={"font-semibold"}>Characters</p>
-                                <p className={"text-2xl font-bold text-green-400"}>{passwordLength}</p>
-                            </div>
 
-                            <input onChange={(event) => setPasswordLength(parseInt(event.target.value))} type="range"
-                                   min={1} max={36} value={passwordLength}
-                                   className="mt-8 w-full h-2 rounded-lg appearance-none cursor-pointer bg-stone-900"/>
+                    <CheckBox label={"Include uppercase letters"} checked={checkedValues.uppercase}
+                              clickHandler={toggleUppercase}/>
+                    <CheckBox label={"Include lowercase letters"} checked={checkedValues.lowercase}
+                              clickHandler={toggleLowercase}/>
+                    <CheckBox label={"Include numbers"} checked={checkedValues.numbers}
+                              clickHandler={toggleNumbers}/>
+                    <CheckBox label={"Include symbols"} checked={checkedValues.symbols}
+                              clickHandler={toggleSymbols}/>
+
+                    <div className={"bg-stone-900 p-6 flex justify-between uppercase text-lg font-semibold"}>
+                        <p className={"opacity-75"}>Strength</p>
+
+                        <div className={"flex items-center gap-2"}>
+                            <p className={"mr-1"}>{passwordStrengthString[passwordStrength]}</p>
+
+                            {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
+                            {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
+                            {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
+                            {/*<div className={"w-2 border-2 opacity-75 h-full"}></div>*/}
                         </div>
+                    </div>
 
-
-                        <CheckBox label={"Include uppercase letters"} checked={checkedValues.uppercase}
-                                  clickHandler={toggleUppercase}/>
-                        <CheckBox label={"Include lowercase letters"} checked={checkedValues.lowercase}
-                                  clickHandler={toggleLowercase}/>
-                        <CheckBox label={"Include numbers"} checked={checkedValues.numbers}
-                                  clickHandler={toggleNumbers}/>
-                        <CheckBox label={"Include symbols"} checked={checkedValues.symbols}
-                                  clickHandler={toggleSymbols}/>
-
-                        <div className={"bg-stone-900 p-6 flex justify-between uppercase text-lg font-semibold"}>
-                            <p className={"opacity-75"}>Strength</p>
-
-                            <div className={"flex items-center gap-2"}>
-                                <p className={"mr-1"}>{passwordStrengthString[passwordStrength]}</p>
-
-                                {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
-                                {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
-                                {/*<div className={"w-2 bg-yellow-600 h-full"}></div>*/}
-                                {/*<div className={"w-2 border-2 opacity-75 h-full"}></div>*/}
-                            </div>
-                        </div>
-
-                        <div onClick={generatePassword}
-                             className={"bg-green-400 cursor-pointer px-4 py-4 text-stone-800 font-bold text-lg border-2 border-green-400 hover:bg-stone-800 hover:text-green-400"}>
-                            <p>Generate Password</p>
-                        </div>
+                    <div onClick={generatePassword}
+                         className={"bg-green-400 cursor-pointer px-4 py-4 text-stone-800 font-bold text-lg border-2 border-green-400 hover:bg-stone-800 hover:text-green-400"}>
+                        <p>Generate Password</p>
                     </div>
                 </div>
-            </main>
-        </>
+            </div>
+        </main>
 );
 }
 
