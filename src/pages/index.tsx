@@ -3,6 +3,8 @@ import {FaRegCopy} from "react-icons/fa";
 import CheckBox from "@/components/CheckBox";
 import CheckableValues from "@/types/CheckableValues";
 
+const passwordStrengthString = ["Unavailable", "Pathetic", "Weak", "Medium", "Strong", "Superior", "Incredible", "Godlike"]
+
 const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -27,7 +29,6 @@ export default function Home() {
     let complexity = 0
     Object.values(checkedValues).forEach(value => complexity += (value ? 1 : 0))
     const passwordStrength = Math.ceil((passwordLength * 10) * (complexity) / 144 * 7 / 10 - 0.01)
-    const passwordStrengthString = ["Unavailable", "Pathetic", "Weak", "Medium", "Strong", "Superior", "Incredible", "Godlike"]
 
     const copyPassword = () => {
         navigator.clipboard.writeText(password)
