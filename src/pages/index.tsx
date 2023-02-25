@@ -90,15 +90,17 @@ export default function Home() {
                     <CheckBox label={"Include symbols"} checked={checkedValues.symbols}
                               handleClick={toggleSymbols}/>
 
-                    <div className={"bg-stone-900 p-6 sm:flex justify-between uppercase text-lg font-semibold"}>
+                    <div className={"bg-stone-900 p-6 flex flex-col sm:flex-row justify-between gap-4 uppercase text-lg font-semibold"}>
                         <p className={"opacity-75"}>Strength</p>
 
-                        <div className={"flex items-center gap-2 min-h-12"}>
+                        <div className={"flex items-stretch justify-between gap-4 min-h-12"}>
                             <p className={"mr-1"}>{passwordStrengthString[passwordStrength]}</p>
 
-                            {passwordStrengthString.slice(0, -1).map((value, index) => (
-                                <PasswordStrengthIndicator key={value} active={passwordStrength >= index + 1}/>
-                            ))}
+                            <div className={"flex gap-2"}>
+                                {passwordStrengthString.slice(0, -1).map((value, index) => (
+                                    <PasswordStrengthIndicator key={value} active={passwordStrength >= index + 1}/>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
